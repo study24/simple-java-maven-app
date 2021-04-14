@@ -2,7 +2,7 @@ FROM openjdk:8
 
 COPY  target/*.jar  myapp.jar
 
-EXPOSE 5001
+EXPOSE 8080
 
 ENTRYPOINT  [ "java" , "-jar" ,  "myapp.jar"  ]
 
