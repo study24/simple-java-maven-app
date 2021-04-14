@@ -18,15 +18,16 @@ stages
   {steps {sh 'docker build -t akashjava/sampledocker:v1 .'}}
   
   
-   stage('upload dockerhub')
+
     
-    steps{   
-         withDockerRegistry(credentialsId: 'Docker', url: 'https://index.docker.io/v1/')
-         
-      { sh 'docker push akashjava/sampledocker:v1 }
-      
+   stage ('upload docker image from jenkins to docker hub')
+{
+    steps { 
+
+    withDockerRegistry(credentialsId: 'Docker', url: 'https://index.docker.io/v1/') {
+    sh 'docker push akashjava/sampledocker:v1'
+}
     }
-    
      
       
 
