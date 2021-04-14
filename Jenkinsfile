@@ -24,10 +24,12 @@ stages
 {
     steps { 
 
-    withDockerRegistry(credentialsId: 'Docker', url: 'https://index.docker.io/v1/') {
-    sh 'docker push akashjava/sampledocker:v1'
-}
+    withDockerRegistry(credentialsId: 'Docker', url: 'https://index.docker.io/v1/') 
+      
+      
+      { sh 'docker push akashjava/sampledocker:v1'}
     }
+}
      
       
 
