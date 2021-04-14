@@ -4,4 +4,4 @@ COPY  target/*.jar  myapp.jar
 
 ENTRYPOINT  [ "java" , "-jar" ,  "myapp.jar"  ]
 
-EXPOSE 5000
+EXPOSE 5001
