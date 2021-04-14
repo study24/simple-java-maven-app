@@ -20,12 +20,12 @@ stages
   
    stage('upload dockerhub')
   {  
-      steps { 
-      withDockerRegistry(credentialsId: 'DockerCred', url: 'https://index.docker.io/v1/')
-            }
+    steps{   
+         script {
+            docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
 
-         {sh 'docker push akashjava/sampledocker:v1'}
-
+         
   
   
   
