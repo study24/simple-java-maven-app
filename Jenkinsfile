@@ -13,7 +13,18 @@ stages
    
           { sh 'mvn package'} 
   }
-  }
+  
+  stage('docker build')
+  {steps {sh 'docker build -t akashjava/sampledocker:v1 .'}}
+  
+  
+  
+  
+  
+  
+  
+  
+}
 }
 
  
