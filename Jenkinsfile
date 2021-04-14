@@ -30,7 +30,19 @@ stages
       { sh 'docker push akashjava/sampledocker:v1'}
     }
 }
-     
+  
+ 
+   stage ('run docker image')
+{
+    steps { 
+  
+  
+  withDockerContainer(args: 'docker run -dit --name myapp -p 5000:5000 akashjava/sampledocker:v1', image: 'akashjava/sampledocker:v1') {
+  
+     { sh 'docker run -dit --name myapp -p 5000:5000 akashjava/sampledocker:v1'}
+    
+  }
+    }
       
 
          
