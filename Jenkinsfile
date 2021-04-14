@@ -37,9 +37,9 @@ stages
     steps { 
   
   
-  withDockerContainer(args: 'docker run -dit --name myapp -p 5000:5000 akashjava/sampledocker:v1', image: 'akashjava/sampledocker:v1') {
+  withDockerContainer(args: '', image: 'akashjava/sampledocker:v1') {
   
-     { sh 'docker run -dit --name myapp -p 5000:5000 akashjava/sampledocker:v1'}
+     { sh 'docker run -dit --name myapp -p 5000:5001 akashjava/sampledocker:v1'}
     
   }
     }
