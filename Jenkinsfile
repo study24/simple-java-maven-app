@@ -19,7 +19,7 @@ stages
   
   
    stage('upload dockerhub')
-  {  
+    
     steps{   
          withDockerRegistry(credentialsId: 'Docker', url: 'https://index.docker.io/v1/')
          
