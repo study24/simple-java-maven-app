@@ -14,34 +14,18 @@ stages
           { sh 'mvn package'} 
   }
   
-  stage('docker build')
-  {steps {sh 'docker build -t akashjava/sampledocker:v1 .'}}
-  
-  
-
-    
-   stage ('upload docker image from jenkins to docker hub')
-{
-    steps { 
-
-    withDockerRegistry(credentialsId: 'Docker', url: 'https://index.docker.io/v1/') 
-      
-      
-      { sh 'docker push akashjava/sampledocker:v1'}
-    }
-}
-  
- 
-   stage ('run docker image')
-{
-    steps { 
-  
-      script { dockerImage.run ("-p 8081:8082 --rm --name myapp6  akashjava/sampledocker:v1")
-    
+  stage('Copy-arifact-to-tomcat')
+  {
+  steps 
+    {
+  sshagent (credentials: ['Tomcat-server']) {
+    sh 'ssh -o StrictHostKeyChecking=no */target/*.war ec2-user@172.31.34.50:/var/lib/tomcat/webapps'
   }
-    }
 }
-      
+  }
+
+  
+
 
          
   
