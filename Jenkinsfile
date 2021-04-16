@@ -9,9 +9,9 @@ stages
   } }
 
   stage('code build')
-  { steps { withMaven (jdk: 'JAVA_HOME', maven: 'MAVEN_HOME') }
+  { steps { withMaven (jdk: 'Java home', maven: 'Maven home') }
    
-          { sh 'mvn package'} 
+          { sh 'mvn claen package'} 
   }
   
   stage('Copy-arifact-to-tomcat')
