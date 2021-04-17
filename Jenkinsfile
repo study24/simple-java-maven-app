@@ -7,7 +7,7 @@ agent any
  
   stage ('scm checkout')
  {
- steps { git branch: 'master', url: 'https://github.com/prakashk0301/gradle-calculator/' }
+ steps { git branch: 'master', url: 'https://github.com/study24/simple-java-maven-app/' }
  }
   
   
