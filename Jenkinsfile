@@ -1,29 +1,29 @@
 pipeline
 {
 agent any
-stages
-{
-  stage('scm checkout')
-  { steps {  git branch: 'master', url: 'https://github.com/study24/simple-java-maven-app'  } }
 
-  stage('code test')
-  { steps {  withMaven(jdk: 'JAVA_HOME', maven: 'MAVEN_HOME') {
-      sh 'mvn test'     // provide maven command
-    
-    } } }
-    
-    
-     stage('code compile')
-  { steps {  withMaven(jdk: 'JAVA_HOME', maven: 'MAVEN_HOME') {
-      sh 'mvn compile' // provide maven command
-    } } }
-    
-     stage('code build')
-  { steps {  withMaven(jdk: 'JAVA_HOME', maven: 'MAVEN_HOME') {
-      sh 'mvn clean package'                    // provide maven command
-    
-    
-    } } }
+  stages
+{
+ 
+  stage ('scm checkout')
+ {
+ steps { git branch: 'master', url: 'https://github.com/prakashk0301/gradle-calculator/' }
+ }
+  
+  
+  stage ('run-gradle-command-to-build-and-geneate-artifacts')
+ {
+ steps { sh './gradlew clean'
+ sh './gradlew assemble'
+ sh './gradlew build'
+ sh './gradlew jar'
+ }
+ }
+  
+  
+  
+  
+  
 
 
   stage('deploy to dev')
