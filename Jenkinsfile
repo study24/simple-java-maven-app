@@ -6,14 +6,14 @@ stages
   stage('scm checkout')
   { steps {  git branch: 'master', url: 'https://github.com/study24/simple-java-maven-app'  } }
 
-  stage('code build')
+  stage('code test')
   { steps {  withMaven(jdk: 'JAVA_HOME', maven: 'MAVEN_HOME') {
       sh 'mvn test'     // provide maven command
     
     } } }
     
     
-     stage('code build')
+     stage('code compile')
   { steps {  withMaven(jdk: 'JAVA_HOME', maven: 'MAVEN_HOME') {
       sh 'mvn compile' // provide maven command
     } } }
