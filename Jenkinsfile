@@ -8,9 +8,22 @@ stages
 
   stage('code build')
   { steps {  withMaven(jdk: 'JAVA_HOME', maven: 'MAVEN_HOME') {
+      sh 'mvn test'     // provide maven command
+    
+    } } }
+    
+    
+     stage('code build')
+  { steps {  withMaven(jdk: 'JAVA_HOME', maven: 'MAVEN_HOME') {
+      sh 'mvn compile' // provide maven command
+    } } }
+    
+     stage('code build')
+  { steps {  withMaven(jdk: 'JAVA_HOME', maven: 'MAVEN_HOME') {
       sh 'mvn clean package'                    // provide maven command
-
-} } }
+    
+    
+    } } }
 
 
   stage('deploy to dev')
