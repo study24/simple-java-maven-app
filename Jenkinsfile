@@ -17,17 +17,13 @@ agent any
  sh './gradlew assemble'
  sh './gradlew build'
  sh './gradlew jar'
+ } 
  }
  
   
-  
-  
-  
-  
-
-
   stage('deploy to dev')
-    { steps {
+    
+   { steps {
        sshagent(['tomcat']) {
        sh 'scp -o StrictHostKeyChecking=no target/*.jar ec2-user@172.31.44.215:/var/lib/tomcat/webapps'
     }
