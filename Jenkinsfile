@@ -26,7 +26,7 @@ agent any
     nexusUrl: '172.31.12.175:8081', 
     nexusVersion: 'nexus3', 
     protocol: 'http', 
-    repository: 'maven-repo', 
+    repository: 'maven-central', 
     version: '1.0-SNAPSHOT'
            
           }
