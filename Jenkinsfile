@@ -11,24 +11,32 @@ agent any
  }
   
   
-  stage ('run-gradle-command-to-build-and-geneate-artifacts')
- {
- steps { sh './gradlew clean'
- sh './gradlew assemble'
- sh './gradlew build'
- sh './gradlew jar'
- } 
- }
- 
-  
-  stage('deploy to dev')
+ stage('code build')
+  { steps {  withMaven(jdk: 'JAVA_HOME', maven: 'MAVEN_HOME') {
+      sh 'mvn clean package'                    // provide maven command
     
-   { steps {
-       sshagent(['tomcat']) {
-       sh 'scp -o StrictHostKeyChecking=no target/*.jar ec2-user@172.31.44.215:/var/lib/tomcat/webapps'
-    }
-            }
-         }
+  } } }
+  
+  
+  stage('upload to nexus')
+  { steps { nexusArtifactUploader artifacts: [[artifactId: 'my-app', classifier: '', file: 'target/my-app-1.0-SNAPSHOT.jar', type: 'jar']], 
+    credentialsId: 'nexus-cred', 
+    groupId: 'prod', 
+    nexusUrl: '3.65.14.56:8081', 
+    nexusVersion: 'nexus3', 
+    protocol: 'http', 
+    repository: 'maven-prod', 
+    version: '1.0-SNAPSHOT'
+           
+          }        
+  }
+
+
+
+
+
+
+
 
 }
 }  
