@@ -19,15 +19,7 @@ agent any
   
   
   stage('upload to nexus')
-  { steps { nexusArtifactUploader artifacts: [[artifactId: '1.0-SNAPSHOT', classifier: '', 
-                                               file: 'target/my-app-1.0-SNAPSHOT.jar', 
-                                               type: 'jar']], credentialsId: 'nexus-cred', 
-    groupId: 'Prod', 
-    nexusUrl: '172.31.12.175:8081', 
-    nexusVersion: 'nexus3', 
-    protocol: 'http', 
-    repository: 'maven-central', 
-    version: '1.0-SNAPSHOT'
+  { steps { nexusArtifactUploader artifacts: [[artifactId: '$BUILD_ID', classifier: '', file: 'target/my-app-1.0-SNAPSHOT.jar', type: 'jar']], credentialsId: 'nexus-cred', groupId: 'Prod', nexusUrl: '172.31.12.175:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'maven-repo', version: '$BUILD_ID'
            
           }
   }
